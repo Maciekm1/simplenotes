@@ -1,6 +1,92 @@
-[gd_scene load_steps=2 format=3 uid="uid://cto8ev3srk11x"]
+[gd_scene load_steps=15 format=3 uid="uid://cto8ev3srk11x"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_e36mr"]
+[ext_resource type="PackedScene" uid="uid://bcqqontwf5e8y" path="res://Scenes/sectionUI.tscn" id="2_jbg7g"]
+[ext_resource type="Script" path="res://Scripts/slot.gd" id="3_epuor"]
+[ext_resource type="Script" path="res://Scripts/task.gd" id="4_s2mer"]
+[ext_resource type="Script" path="res://Scripts/section.gd" id="5_u6613"]
+
+[sub_resource type="Resource" id="Resource_w7otu"]
+script = ExtResource("4_s2mer")
+description = "Some Task 2"
+Priority = 0
+Effort = 0
+created_date = ""
+complete_by_date = ""
+completed = false
+title = ""
+
+[sub_resource type="Resource" id="Resource_4s53v"]
+script = ExtResource("4_s2mer")
+description = "Get Chicken"
+Priority = 0
+Effort = 0
+created_date = ""
+complete_by_date = ""
+completed = false
+title = ""
+
+[sub_resource type="Resource" id="Resource_ge4rk"]
+script = ExtResource("4_s2mer")
+description = ""
+Priority = 0
+Effort = 0
+created_date = ""
+complete_by_date = ""
+completed = false
+title = ""
+
+[sub_resource type="Resource" id="Resource_ue1mm"]
+script = ExtResource("5_u6613")
+extra_slots = Array[ExtResource("3_epuor")]([SubResource("Resource_ge4rk")])
+title = "some"
+
+[sub_resource type="Resource" id="Resource_6in2n"]
+script = ExtResource("5_u6613")
+extra_slots = Array[ExtResource("3_epuor")]([SubResource("Resource_4s53v"), SubResource("Resource_ue1mm")])
+title = "Meats"
+
+[sub_resource type="Resource" id="Resource_eh037"]
+script = ExtResource("5_u6613")
+extra_slots = Array[ExtResource("3_epuor")]([SubResource("Resource_w7otu"), SubResource("Resource_6in2n")])
+title = "Shopping"
+
+[sub_resource type="Resource" id="Resource_8vmlc"]
+script = ExtResource("4_s2mer")
+description = ""
+Priority = 0
+Effort = 0
+created_date = ""
+complete_by_date = ""
+completed = false
+title = "oh this task"
+
+[sub_resource type="Resource" id="Resource_36r8i"]
+script = ExtResource("5_u6613")
+extra_slots = Array[ExtResource("3_epuor")]([SubResource("Resource_eh037"), SubResource("Resource_8vmlc")])
+title = "General"
+
+[sub_resource type="Resource" id="Resource_4noeb"]
+script = ExtResource("5_u6613")
+extra_slots = Array[ExtResource("3_epuor")]([])
+title = ""
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_e36mr")
+section_ui_scene = ExtResource("2_jbg7g")
+sections = Array[ExtResource("5_u6613")]([SubResource("Resource_36r8i"), SubResource("Resource_4noeb")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SlotContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10

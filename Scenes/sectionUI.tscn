@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcqqontwf5e8y"]
+
+[ext_resource type="Script" path="res://Scenes/section_ui.gd" id="1_737rn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr314"]
+bg_color = Color(0.118581, 0.118581, 0.118581, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oytpw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8hrh"]
+border_color = Color(0.864675, 0.864675, 0.864675, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bon0y"]
+bg_color = Color(0.218651, 0.688815, 0.580779, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7krl"]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="SectionUI" type="Control"]
+custom_minimum_size = Vector2(360, 75)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
+offset_bottom = 75.0
+grow_horizontal = 2
+script = ExtResource("1_737rn")
+
+[node name="SectionNode" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(340, 75)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
+offset_bottom = 75.0
+grow_horizontal = 2
+scale = Vector2(1, 0.993213)
+theme_override_styles/panel = SubResource("StyleBoxFlat_nr314")
+
+[node name="NodeMarginContainer" type="MarginContainer" parent="SectionNode"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SectionNode/NodeMarginContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginContainer" type="MarginContainer" parent="SectionNode/NodeMarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="ExpandSectionButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/ExpandMarginContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oytpw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o8hrh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
+toggle_mode = true
+
+[node name="TitleLabel" type="Label" parent="SectionNode/NodeMarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Section"
+
+[node name="MarginContainer" type="MarginContainer" parent="SectionNode/NodeMarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TaskSettingsButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oytpw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o8hrh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
+toggle_mode = true
+
+[node name="CompletedButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oytpw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o8hrh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
+toggle_mode = true
+
+[node name="SlotContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = 75.0
+offset_right = 270.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_constants/separation = 10

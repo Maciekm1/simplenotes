@@ -1,6 +1,13 @@
 extends Node2D
 
+@export var section_ui_scene: PackedScene
+@export var sections: Array[Section]
+@export var main_sections_separation: float = 10
+
+@onready var slot_container: VBoxContainer = $CanvasLayer/MarginContainer/SlotContainer
+
 func _ready() -> void:
+	slot_container.add_theme_constant_override("separation", main_sections_separation)
 	# Create the main section
 	var general_section = Section.new()
 	general_section.title = "General"
@@ -39,6 +46,11 @@ func _ready() -> void:
 			print("Subsection: ", slot.title)
 			for sub_slot in slot.extra_slots:
 				print_task_details(sub_slot)
+	
+	#sections.append(general_section)
+	
+	create_base_sections_ui()
+	
 
 func print_task_details(task: Task) -> void:
 	print("Task: ", task.title)
@@ -52,3 +64,11 @@ func print_task_details(task: Task) -> void:
 
 func _process(delta: float) -> void:
 	pass
+
+func create_base_sections_ui():
+	for s in sections:
+		var new_section_ui = section_ui_scene.instantiate()
+		new_section_ui.set_section(s)
+		new_section_ui.visualise_slots(1)
+		slot_container.add_child(new_section_ui)
+		
