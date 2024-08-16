@@ -6,3 +6,6 @@ extends Slot
 # Function to add a task or section to the section
 func add_slot(slot: Slot):
 	extra_slots.append(slot)
+	
+func remove_slot(slot: Slot):
+	extra_slots.erase(slot)

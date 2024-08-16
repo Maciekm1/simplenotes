@@ -1,13 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcqqontwf5e8y"]
+[gd_scene load_steps=14 format=3 uid="uid://bcqqontwf5e8y"]
 
 [ext_resource type="Script" path="res://Scenes/section_ui.gd" id="1_737rn"]
+[ext_resource type="PackedScene" uid="uid://cyug2qv2yybf8" path="res://Scenes/edit_field.tscn" id="2_n1haq"]
+[ext_resource type="Texture2D" uid="uid://bi4a111b7cwuy" path="res://Assets/Icons/Chevron down.png" id="2_tbkio"]
+[ext_resource type="Texture2D" uid="uid://m0nirkeg2uda" path="res://Assets/Icons/plus.png" id="3_3wwiu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr314"]
-bg_color = Color(0.118581, 0.118581, 0.118581, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nswpm"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+corner_detail = 10
+shadow_color = Color(0, 0, 0, 0.235294)
+shadow_size = 3
+shadow_offset = Vector2(0, 5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oytpw"]
 
@@ -31,7 +44,45 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="SectionUI" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8h0fc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tj5l"]
+bg_color = Color(0.753984, 0.753984, 0.753984, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.864675, 0.864675, 0.864675, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2wdf"]
+bg_color = Color(0.823924, 0.823924, 0.823924, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5vr5"]
+bg_color = Color(0.737193, 0.737193, 0.737193, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.539, 0.539, 0.539, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="SectionUI" type="Control" groups=["SlotUI"]]
+y_sort_enabled = true
 custom_minimum_size = Vector2(360, 75)
 layout_mode = 3
 anchors_preset = 5
@@ -42,6 +93,7 @@ offset_right = 270.0
 offset_bottom = 75.0
 grow_horizontal = 2
 script = ExtResource("1_737rn")
+slot_separation = 20.0
 
 [node name="SectionNode" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(340, 75)
@@ -54,7 +106,7 @@ offset_right = 270.0
 offset_bottom = 75.0
 grow_horizontal = 2
 scale = Vector2(1, 0.993213)
-theme_override_styles/panel = SubResource("StyleBoxFlat_nr314")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nswpm")
 
 [node name="NodeMarginContainer" type="MarginContainer" parent="SectionNode"]
 layout_mode = 2
@@ -66,9 +118,10 @@ layout_mode = 2
 
 [node name="ExpandMarginContainer" type="MarginContainer" parent="SectionNode/NodeMarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 15
 
-[node name="ExpandSectionButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/ExpandMarginContainer"]
+[node name="ExpandSectionButton2" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/ExpandMarginContainer"]
+visible = false
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -80,10 +133,26 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
 theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
 toggle_mode = true
 
+[node name="Control" type="Control" parent="SectionNode/NodeMarginContainer/HBoxContainer/ExpandMarginContainer"]
+custom_minimum_size = Vector2(48, 51)
+layout_mode = 2
+
+[node name="ExpandSectionButton" type="TextureButton" parent="SectionNode/NodeMarginContainer/HBoxContainer/ExpandMarginContainer/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 55.0
+pivot_offset = Vector2(25, 27.5)
+texture_normal = ExtResource("2_tbkio")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="TitleLabel" type="Label" parent="SectionNode/NodeMarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Section"
 
 [node name="MarginContainer" type="MarginContainer" parent="SectionNode/NodeMarginContainer/HBoxContainer"]
@@ -96,27 +165,32 @@ layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="TaskSettingsButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="AddTaskButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxEmpty_oytpw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o8hrh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
-theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
-toggle_mode = true
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8h0fc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1tj5l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x2wdf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5vr5")
 
-[node name="CompletedButton" type="Button" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 45)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxEmpty_oytpw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_o8hrh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
-theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
-toggle_mode = true
+[node name="TextureRect" type="TextureRect" parent="SectionNode/NodeMarginContainer/HBoxContainer/MarginContainer/HBoxContainer/AddTaskButton"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.25
+offset_right = 11.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3wwiu")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="SlotContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(340, 0)
@@ -130,3 +204,13 @@ offset_right = 270.0
 offset_bottom = 150.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
+
+[node name="EditField" parent="." instance=ExtResource("2_n1haq")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="TapTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="gui_input" from="SectionNode" to="." method="_on_task_ui_panel_gui_input"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyug2qv2yybf8"]
+
+[ext_resource type="Script" path="res://Scenes/edit_field.gd" id="1_nit1v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6wva"]
+bg_color = Color(0.6, 0.6, 0.6, 0.588235)
+
+[node name="EditField" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nit1v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6wva")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 225
+theme_override_constants/margin_right = 25
+
+[node name="TitleEdit" type="LineEdit" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "...title..."
+alignment = 1
+clear_button_enabled = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 150
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "CLOSE"
+
+[connection signal="text_changed" from="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer/TitleEdit" to="." method="_on_title_edit_text_changed"]
+[connection signal="text_submitted" from="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer/TitleEdit" to="." method="_on_title_edit_text_submitted"]

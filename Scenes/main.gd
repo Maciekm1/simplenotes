@@ -1,10 +1,11 @@
 extends Node2D
 
-@export var section_ui_scene: PackedScene
 @export var sections: Array[Section]
-@export var main_sections_separation: float = 10
+@export var section_ui_scene: PackedScene
+@export var task_ui_scene: PackedScene
 
-@onready var slot_container: VBoxContainer = $CanvasLayer/MarginContainer/SlotContainer
+@export var main_sections_separation: float = 10
+@onready var slot_container: VBoxContainer = %SlotContainer
 
 func _ready() -> void:
 	slot_container.add_theme_constant_override("separation", main_sections_separation)

@@ -1,0 +1,297 @@
+[gd_scene load_steps=14 format=3 uid="uid://8be7nyo7xweg"]
+
+[ext_resource type="Texture2D" uid="uid://brwl2cxntb4qs" path="res://Assets/Icons/Icon.png" id="1_bp8kw"]
+[ext_resource type="Script" path="res://Scenes/task_settings_button.gd" id="1_isqbg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oytpw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8hrh"]
+bg_color = Color(0.92549, 0.92549, 0.92549, 1)
+border_color = Color(0.864675, 0.864675, 0.864675, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bon0y"]
+bg_color = Color(0.823924, 0.823924, 0.823924, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7krl"]
+bg_color = Color(0.92549, 0.92549, 0.92549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mm7rv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgxek"]
+bg_color = Color(0.92549, 0.92549, 0.92549, 1)
+border_color = Color(0.864675, 0.864675, 0.864675, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1fwf"]
+bg_color = Color(0.219608, 0.690196, 0.580392, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b58wx"]
+bg_color = Color(0.92549, 0.92549, 0.92549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id="Animation_kovcj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button1:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button2:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button2:button_pressed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button1:button_pressed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_r83gv"]
+resource_name = "show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button1:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-50, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-100, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button1:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button2:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button2:button_pressed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button1:button_pressed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yg7c8"]
+_data = {
+"RESET": SubResource("Animation_kovcj"),
+"show": SubResource("Animation_r83gv")
+}
+
+[node name="TaskSettingsButton" type="Button"]
+custom_minimum_size = Vector2(45, 45)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oytpw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o8hrh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bon0y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7krl")
+toggle_mode = true
+script = ExtResource("1_isqbg")
+
+[node name="SettingsImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.5
+offset_top = 7.5
+offset_right = -7.5
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+texture = ExtResource("1_bp8kw")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button1" type="Button" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 45.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mm7rv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rgxek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o1fwf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b58wx")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="Button1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 45.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mm7rv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rgxek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o1fwf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b58wx")
+toggle_mode = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yg7c8")
+}
+
+[connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
