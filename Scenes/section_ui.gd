@@ -8,6 +8,7 @@ var section_node: PanelContainer
 var slot_container: VBoxContainer
 var edit_field: EditField
 var label: Label
+var parent_section
 
 var old_min_size: Vector2
 var new_min_size: Vector2
@@ -114,9 +115,9 @@ func get_number_visible_slots(s: SectionUI):
 func update_min_size():
 	custom_minimum_size.y = old_min_size.y + ((slot_height + slot_separation) * get_number_visible_slots(self))
 	
-	var parent = get_parent().get_parent()
-	if parent != null and parent is SectionUI:
-		parent.update_min_size()
+	parent_section = get_parent().get_parent()
+	if parent_section != null and parent_section is SectionUI:
+		parent_section.update_min_size()
 
 func on_expand_button_pressed():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
@@ -138,13 +139,14 @@ func on_add_task_button_pressed() -> void:
 	add_task(new_task)
 
 func on_slot_delete() -> void:
+	print(section.title)
 	var sectionUI = get_parent().get_parent() as SectionUI
 	if sectionUI == null:
 		print(str(self) + " is not a child of a section!")
 		return
-	section = sectionUI.section as Section
+	var parent_section = sectionUI.section as Section
 	sectionUI.remove_slot(self)
-	section.remove_slot(section)
+	parent_section.remove_slot(self.section)
 
 func add_task(t: Task) -> bool:
 	task_ui_scene = preload("res://Scenes/taskUI.tscn")
@@ -163,7 +165,7 @@ func add_task(t: Task) -> bool:
 	update_min_size()
 	return true
 	
-func add_section(s: Section) -> bool:
+func add_section(s: Section, index: int, caller: Control) -> bool:
 	section_ui_scene = preload("res://Scenes/sectionUI.tscn")
 	if len(extra_slots) > max_number_of_slots or depth > 5:
 		return false
@@ -177,6 +179,9 @@ func add_section(s: Section) -> bool:
 	new_section_ui.slot_container.size.x = 500 - (40 * depth)
 	new_section_ui.slot_container.position.x = new_section_ui.section_node.position.x + 40
 	slot_container.add_child(new_section_ui)
+	slot_container.move_child(new_section_ui, index)
+	# We're moving the child so it pushes down the rest of the elements, and moves the element to that position, however section.extra_slots is not updated. We need to update it - swapping wouldn't work correctly.
+	#swap_elements(section.extra_slots, caller.get_index(), index)
 	update_min_size()
 	return true
 
@@ -194,7 +199,7 @@ func on_add_section_button_pressed() -> void:
 	var new_section = Section.new()
 	new_section.title = ""
 	section.add_slot(new_section)
-	add_section(new_section)
+	add_section(new_section, slot_container.get_child_count(), self)
 
 func _on_task_ui_panel_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse"):
@@ -226,7 +231,12 @@ func _on_task_ui_panel_gui_input(event: InputEvent) -> void:
 				closest_node = node
 
 		if closest_node:
+			print(get_index())
+			print('\n')
+			print(closest_node.get_index())
+			swap_elements(parent.get_parent().section.extra_slots, get_index(), closest_node.get_index())
 			get_parent().move_child(self, closest_node.get_index())
+			
 				
 		if !tap_timer.is_stopped():
 			#label.text = 'edit mode ....'
@@ -247,3 +257,10 @@ func check_for_swipe(start_pos, end_pos) -> bool:
 func on_edit_field_title_text_changed(new_text: String):
 	label.text = new_text
 	section.title = new_text
+	
+func swap_elements(arr, i, j):
+	if i == j:
+		return
+	var temp = arr[i]
+	arr[i] = arr[j]
+	arr[j] = temp

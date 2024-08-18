@@ -53,10 +53,11 @@ func on_completed_button_pressed() -> void:
 	task.completed = !task.completed
 	
 func on_change_to_section() -> bool:
+	var self_index = get_index()
 	on_slot_delete()
 	var new_section = Section.new() as Section
 	new_section.title = task.title
-	sectionUI.add_section(new_section)
+	sectionUI.add_section(new_section, self_index, self)
 	sectionUI.section.add_slot(new_section)
 	return true
 	
@@ -96,6 +97,12 @@ func _on_task_ui_panel_gui_input(event: InputEvent) -> void:
 				closest_node = node
 
 		if closest_node:
+			print('\n')
+			print(get_index())
+			print('\n')
+			print(closest_node.get_index())
+			print('\n')
+			swap_elements(parent.get_parent().section.extra_slots, get_index(), closest_node.get_index())
 			sectionUI.slot_container.move_child(self, closest_node.get_index())
 		
 		#task_ui_panel.set_mouse_filter(Control.MouseFilter.MOUSE_FILTER_STOP)
@@ -128,3 +135,10 @@ func on_settings_button_pressed() -> void:
 	else:
 		tween.tween_property(settings_image, 'rotation_degrees', 0, .2)
 		task_settings_button.hide_buttons()
+
+func swap_elements(arr, i, j):
+	if i == j:
+		return
+	var temp = arr[i]
+	arr[i] = arr[j]
+	arr[j] = temp
